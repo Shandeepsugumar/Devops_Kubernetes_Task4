@@ -18,7 +18,7 @@ docker build -t shandeep04/docker_task4 .
 echo "🔑 Logging in to Docker Hub..."
 echo "shandeep-4621" | docker login -u "shandeep04" --password-stdin
 
-docker tag devops04 shandeep04/docker_task4
+docker tag devops04 shandeep04/docker_task4:latest
 
 # Push the new image
 echo "🚀 Pushing the Docker image to Docker Hub..."
