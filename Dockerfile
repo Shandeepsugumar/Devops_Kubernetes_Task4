@@ -1,8 +1,19 @@
-# Use the official Nginx image from Docker Hub
-FROM nginx:latest
+# Use the Node.js image
+FROM node:18
 
-# Copy the entire WP folder into the Nginx web server directory
-COPY ./index.html /usr/share/nginx/html
+# Create app directory
+WORKDIR /app
 
-# Expose port 80 for the web server
-EXPOSE 80
+# Copy package files and install dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy all source files including index.js
+COPY . .
+
+# Expose app port
+EXPOSE 3000
+
+# Start the app
+CMD ["npm", "start"]
+
