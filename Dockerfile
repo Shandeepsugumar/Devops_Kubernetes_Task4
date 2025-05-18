@@ -1,19 +1,13 @@
-# Use the Node.js image
-FROM node:18
+# Use the official Nginx image
+FROM nginx:alpine
 
-# Create app directory
-WORKDIR /app
+# Remove the default Nginx website files
+RUN rm -rf /usr/share/nginx/html/*
 
-# Copy package files and install dependencies
-COPY package*.json ./
-RUN npm install
+# Copy your static HTML files from the build directory to Nginx's web root
+COPY build/ /usr/share/nginx/html/
 
-# Copy all source files including index.js
-COPY . .
+# Expose port 80 (the default port for Nginx)
+EXPOSE 80
 
-# Expose app port
-EXPOSE 3000
-
-# Start the app
-CMD ["npm", "start"]
-
+# The default Nginx start command will run automatically (no CMD needed)
