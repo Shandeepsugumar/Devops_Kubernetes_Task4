@@ -3,10 +3,11 @@ kind: Service
 metadata:
   name: devopstask04-service
 spec:
+  type: NodePort
   selector:
     app: devopstask04
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: NodePort
+      nodePort: 30080   # Choose a free port between 30000-32767
